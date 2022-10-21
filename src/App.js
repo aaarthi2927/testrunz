@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//import Header from "./Components/Header";
+import { MdFeedback } from "react-icons/md";
 
+import { Route, Routes } from "react-router-dom";
+import { Activity } from "./Components/Activity";
+import { FeedBack } from "./Components/FeedBack";
+import { HelpGuide } from "./Components/HelpGuide";
+import { Manageuser } from "./Components/Manageuser";
+import Settings from "./Components/Settings";
+import Support from "./Components/Support";
+//import { SideNavbar } from "./Components/SideNavbar";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Routes>
+    <Route path='/SettingsNav' element={<Settings/>} />
+    <Route path='/SettingsNav/Manageuser' element={<Manageuser/>} />
+    <Route path='/SettingsNav/Activity' element={<Activity/>} />
+    <Route path='/SupportNav' element={<Support/>} />
+    <Route path='/SupportNav/Feedback' element={<FeedBack/>} />
+    <Route path='/SupportNav/Helpguide' element={<HelpGuide/>} />
+        </Routes>
+
     </div>
   );
 }
 
 export default App;
+
