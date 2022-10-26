@@ -1,6 +1,6 @@
 import React from "react";
 import { FeedBackForm } from "./FeedBackForm";
-import Support from "./Support";
+import Support from "../Support";
 
 export function FeedBack() {
     return (
