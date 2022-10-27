@@ -1,6 +1,7 @@
 import React from "react";
-import {FaFilter} from 'react-icons/fa';
-import {AiOutlineSearch} from 'react-icons/ai';
+import { Item2 } from "./Item2";
+import { Item3 } from "./Item3";
+import { Item1 } from "./Item1";
 export const datadetails1=[{
   currenttask:"Experiment design",
   assigned:"Due date 07/10/2019(overdue)",
@@ -56,4 +57,4 @@ export default function Mypage() {
         </div>
           )
 }
-  
+
