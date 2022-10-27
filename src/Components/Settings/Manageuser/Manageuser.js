@@ -4,7 +4,6 @@ import {useNavigate} from 'react-router-dom';
 import { MdOutlineNavigateNext,MdSkipPrevious} from 'react-icons/md';
 import { BiSkipNext} from 'react-icons/bi';
 import {GrFormPrevious} from 'react-icons/gr';
-
 import {RiEdit2Fill} from 'react-icons/ri';
 export const datauser=[{name:"xxx",email:"xxx@gmail.com",role:"student",university:"Anna University",
 institutename:"Mailam",department:"BEEE",year:"2",state:"tamilnadu",semester:"3",
@@ -13,7 +12,6 @@ country:"India",
 
 ]
 export function Manageuser() {
-
         return (
         <div>
             <Settings/>
@@ -27,7 +25,6 @@ export function Manageuser() {
 export function Manageuserdata() {
   
     const Navigate=useNavigate();
-    
     const user=()=>{
         Navigate("/SettingsNav/Manageuser/:id");
     }
@@ -120,7 +117,6 @@ country}){
                 <td><h5>{email}</h5></td>
                 <td> <button><RiEdit2Fill/></button></td>
             </tr>
-
   <tr>
                 <td><h5>Role</h5></td>
                 <td><h5>{role}</h5></td>
