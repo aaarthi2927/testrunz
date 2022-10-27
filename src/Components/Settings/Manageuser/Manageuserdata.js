@@ -18,6 +18,7 @@ export function Manageuserdata() {
         Navigate("/SettingsNav/Manageuser/adduser");
     };
    
+    
     return (
         <div className="m-5 p-5">
             <div className="text-sm shadow-sm shadow-gray-400 w-full h-full">
