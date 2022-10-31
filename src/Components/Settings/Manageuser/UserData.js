@@ -1,14 +1,15 @@
 import { RiEdit2Fill } from 'react-icons/ri';
-
+import { useNavigate } from 'react-router-dom';
 
 export function UserData({ name, email, role, university, institutename, department, year, state, semester, country }) {
+    const navigate = useNavigate();
     return (
         <div className="m-15 p-10">
             <table className="grow  p-10 border border-slate-900   border-solid  rounded-lg m-10  w-3/5 h-auto shadow-lg shadow-slate-800">
                      <div className='p-5'>
-          <h2 className="text-lg font-bold text-gray-900">Manage User</h2>
+          <h2 className="text-sm font-medium text-gray-900">Manage User</h2>
           <div className='float-right -mt-7 -mr-60 p-1 '> 
- <h2 className="text-xs text-pink-600  bg-white rounded hover:bg-pink-100 shadow-lg shadow-pink-100" >
+ <h2 className="text-xs text-pink-600  bg-white rounded hover:bg-pink-100 shadow-lg shadow-pink-100" onClick={() => navigate(-1)}>
  Close
             </h2>
             </div>
@@ -39,7 +40,6 @@ export function UserData({ name, email, role, university, institutename, departm
                     <td><h5 className="text-xs text-stone-500">{institutename}</h5></td>
                     <td> <button disabled className="text-xs text-gray-400"><RiEdit2Fill /></button></td>
                 </tr>
-
                 <tr>
                     <td><h5 className="p-2 text-xs text-stone-500">Department</h5></td>
                     <td><h5 className="text-xs text-stone-500">{department}</h5></td>

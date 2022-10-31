@@ -48,7 +48,7 @@ export const datadetails2=[{
 export default function Mypage() {
      return(
         <div className="m-5 p-5">
-         <h3 className=' text-base font-semibold text-black'>My Page</h3>
+         <h3 className='text-sm font-medium text-gray-900'>My Page</h3>
          <div>
     <Item1/>
   <Item2/>

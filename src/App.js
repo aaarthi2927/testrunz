@@ -15,9 +15,9 @@ import Mypage from "./Components/Mypage/Mypage";
 function App() {
   return (
     <div className="App">
-        <Routes>
-        <Route path='/Header' element={<Header/>} />
-        <Route path='/SideNavbar' element={<SideNavbar/>} />    
+    <Routes>
+    <Route path='/Header' element={<Header/>} />
+    <Route path='/SideNavbar' element={<SideNavbar/>} />    
     <Route path='/SettingsNav' element={<Settings/>} />
     <Route path='/SettingsNav/Manageuser' element={<Manageuser/>} />
     <Route path='/SettingsNav/Activity' element={<Activity/>} />
@@ -27,7 +27,7 @@ function App() {
 <Route path='/SettingsNav/Manageuser/:id' element={<UserDatalist/>} />
 <Route path='/SettingsNav/Manageuser/adduser' element={<AddUserlist/>} />
 <Route path='/Mypage' element={<Mypage/>} />
-  </Routes>  
+   </Routes>  
     </div>
   );
 }
