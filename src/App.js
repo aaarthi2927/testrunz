@@ -27,7 +27,6 @@ function App() {
 <Route path='/SettingsNav/Manageuser/:id' element={<UserDatalist/>} />
 <Route path='/SettingsNav/Manageuser/adduser' element={<AddUserlist/>} />
 <Route path='/Mypage' element={<Mypage/>} />
- 
   </Routes>  
     </div>
   );
