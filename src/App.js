@@ -1,5 +1,5 @@
 //import Header from "./Components/Header";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import { Activity } from "./Components/Settings/Activity/Activity";
 import { FeedBack } from "./Components/Support/Feedback/FeedBack";
 import { HelpGuide } from "./Components/Support/Helpguide/HelpGuide";
@@ -11,10 +11,15 @@ import Header from "./Components/Header/Header";
 import { SideNavbar } from "./Components/Sidebar/SideNavbar";
 import { AddUserlist } from "./Components/Settings/Manageuser/AddUserlist";
 import Mypage from "./Components/Mypage/Mypage";
-//import { SideNavbar } from "./Components/Sidebar/SideNavbar";
+import { createContext,useState } from "react";
+import { datauser } from "./Components/Settings/Manageuser/datauser";
+export const AppContext=createContext(null);
 function App() {
+  const [data,setData]=useState(datauser);
+ 
   return (
     <div className="App">
+      <AppContext.Provider value={{data,setData}}>
     <Routes>
     <Route path='/Header' element={<Header/>} />
     <Route path='/SideNavbar' element={<SideNavbar/>} />    
@@ -28,7 +33,7 @@ function App() {
 <Route path='/SettingsNav/Manageuser/adduser' element={<AddUserlist/>} />
 <Route path='/Mypage' element={<Mypage/>} />
    </Routes>  
-    </div>
+   </AppContext.Provider>    </div>
   );
 }
 
