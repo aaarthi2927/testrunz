@@ -1,21 +1,35 @@
-import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
 import { MdOutlineNavigateNext, MdSkipPrevious } from 'react-icons/md';
 import { BiSkipNext } from 'react-icons/bi';
 import { GrFormPrevious } from 'react-icons/gr';
 import { IoIosAdd } from 'react-icons/io';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { datauser } from "./Manageuser";
+import { datauser } from "./datauser";
+import { AppContext } from "../../../App";
 export const row=['5','10','15'];
 export function Manageuserdata() {
-    const [data, setData] = useState(datauser);
-          const Navigate = useNavigate();
+     const {data}=useContext(AppContext);
+               const Navigate = useNavigate();
     const user = () => {
-        Navigate("/SettingsNav/Manageuser/:id");
+        Navigate(`/SettingsNav/Manageuser/{index}`);
     };
     const useradd = () => {
         Navigate("/SettingsNav/Manageuser/adduser");
     };
+    const tableData = data.map((d1,index) => {
+        return(
+            <tr className="text-xs text-gray-500 hover:bg-gray-200 " onClick={user} key={d1.index}>
+       <td className="border-r-2 border-solid border-current">{index+1}</td>
+          <td className="border-r-2 border-solid border-current">{d1.email}</td>
+        <td className="border-r-2 border-solid border-current ">{d1.role}</td>
+       <td className="border-r-2 border-solid border-current  ">{d1.country}</td>
+       <td className="border-r-2 border-solid border-current ">{d1.institutename}</td>  
+                      </tr>
+        )
+       });
+
+
       return (
         <div className="m-5 p-5">
             <div className="text-sm shadow-sm shadow-gray-400 w-full h-full">
@@ -35,30 +49,24 @@ export function Manageuserdata() {
                             </div>
             </div>
                         <table className="w-full h-full  text-center border border-solid border-current border-collapse ">
+             <thead>
               <tr className="border  border-solid border-current text-sm font-medium text-gray-900">
-              <td className="border border-solid border-current">Id </td>
-               <td className="border border-solid border-current">Name </td>
-                    <td className="border border-solid border-current">Email </td>
-                    <td className="border border-solid border-current">Role </td>
-                    <td className="border border-solid border-current">Country </td>
-                    <td className="border border-solid border-current">Institute Name</td>
+              <th className="border border-solid border-current">Id </th>
+               <th className="border border-solid border-current">Name </th>
+                    <th className="border border-solid border-current">Email </th>
+                    <th className="border border-solid border-current">Role </th>
+                    <th className="border border-solid border-current">Country </th>
+                    <th className="border border-solid border-current">Institute Name</th>
                 </tr>
-                {data.map(d1 => {
-                    return (
-                        <tr className="text-xs text-gray-500 hover:bg-gray-200 " onClick={user}>
-                            <td className="border-r-2 border-solid border-current">{d1.id}</td>
-                            <td className="border-r-2 border-solid border-current">{d1.name}</td>
-                            <td className="border-r-2 border-solid border-current">{d1.email}</td>
-                            <td className="border-r-2 border-solid border-current ">{d1.role}</td>
-                            <td className="border-r-2 border-solid border-current  ">{d1.country}</td>
-                            <td className="border-r-2 border-solid border-current ">{d1.institutename}</td>
-                        </tr>
-                    );
-                })}
+                </thead>
+                <tbody>
+                {tableData}
+                </tbody>
+             
             </table>
 
             <div className="bg-gray-100 w-full h-full
-                          border border-gray-200 
+                border border-gray-200 
                            flex flex-row justify-end gap-10">
                 <div className="p-4 text-xs font-thin float-right ">
                <select className="-m-14 border border-gray-200 bg-gray-50">
