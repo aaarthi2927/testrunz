@@ -1,7 +1,7 @@
 import { RiEdit2Fill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 
-export function UserData({ name, email, role, university, institutename, department, year, state, semester, country }) {
+export function UserData({name, email, role, university, institutename, department, year, state, semester, country}) {
     const navigate = useNavigate();
     return (
         <div className="m-15 p-10">

@@ -1,35 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import { MdOutlineNavigateNext, MdSkipPrevious } from 'react-icons/md';
 import { BiSkipNext } from 'react-icons/bi';
 import { GrFormPrevious } from 'react-icons/gr';
 import { IoIosAdd } from 'react-icons/io';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
-import { datauser } from "./datauser";
-import { AppContext } from "../../../App";
+import { useSelector } from "react-redux";
 export const row=['5','10','15'];
 export function Manageuserdata() {
-     const {data}=useContext(AppContext);
-               const Navigate = useNavigate();
+                  const Navigate = useNavigate();
     const user = () => {
         Navigate(`/SettingsNav/Manageuser/{index}`);
     };
     const useradd = () => {
         Navigate("/SettingsNav/Manageuser/adduser");
     };
-    const tableData = data.map((d1,index) => {
-        return(
-            <tr className="text-xs text-gray-500 hover:bg-gray-200 " onClick={user} key={d1.index}>
-       <td className="border-r-2 border-solid border-current">{index+1}</td>
-          <td className="border-r-2 border-solid border-current">{d1.email}</td>
-        <td className="border-r-2 border-solid border-current ">{d1.role}</td>
-       <td className="border-r-2 border-solid border-current  ">{d1.country}</td>
-       <td className="border-r-2 border-solid border-current ">{d1.institutename}</td>  
-                      </tr>
-        )
-       });
+   
+    const users=useSelector((state)=>{
+        return state.users
+    });
+console.log(users);
 
-
+const tbdata=users.map(({id,name,email,university,department,institute,role,lab},index)=>{
+    return(
+        <tr className="text-xs text-gray-500 hover:bg-gray-200" onClick={user}>
+         <td className="border-r-2 border-solid border-current">{ id}</td>
+        <td className="border-r-2 border-solid border-current">{name}</td>
+           <td className="border-r-2 border-solid border-current">{email}</td>
+         <td className="border-r-2 border-solid border-current ">{university}</td>
+        <td className="border-r-2 border-solid border-current  ">{department}</td>
+        <td className="border-r-2 border-solid border-current ">{institute}</td>  
+                       </tr>
+    )
+})
       return (
         <div className="m-5 p-5">
             <div className="text-sm shadow-sm shadow-gray-400 w-full h-full">
@@ -60,7 +63,7 @@ export function Manageuserdata() {
                 </tr>
                 </thead>
                 <tbody>
-                {tableData}
+               {tbdata}
                 </tbody>
              
             </table>

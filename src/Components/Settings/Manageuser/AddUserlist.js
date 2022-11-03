@@ -1,18 +1,44 @@
 import {useNavigate, useParams} from 'react-router-dom';
-import {useContext, useState} from 'react';
-import { AppContext } from '../../../App';
+import { useState} from 'react';
+import { useDispatch } from 'react-redux';
+import * as userActions from '../../store/action/user';
 export function AddUserlist() {
-  const {data,setData}=useContext(AppContext);
-  const [name,setName]=useState("");
-  const [email,setEmail]=useState("");
-  const [university,setUniversity]=useState("");
-  const [institute,setInstitute]=useState("");
-  const [department,setDepartment]=useState("");
-  const [role,setRole]=useState("");
-  const [lab,setLab]=useState("");
+  const Navigate = useNavigate();
+  const dispatch=useDispatch(); 
+const [user,setUser]=useState({
+  id:"",
+  name:"",email:"",university:"Anna University",department:"Mechanical_Engineering",institute:"Mailam",
+  role:"",lab:""
+
+})
+const inputHandler=(event)=>{
+const {name,value}=event.target;
+console.log(name,value)
+setUser((previtem)=>{
+  return{
+    ...previtem,
+    [name]:value,
+ }
+})
+}
+
+const addUser=()=>{
+dispatch(userActions.addUser(user))
+setUser({
+  id:"",
+  name:"",email:"",university:"",department:"",institute:"",
+  role:"",lab:"",
+
+})
+Navigate("/SettingsNav/Manageuser");
+
+}
+
   const Labdata=['','BEEE','Computer_Programing','Physics','Chemistry','Workshop']
   const navigate=useNavigate();
-     return (
+    
+  return (
+
     <div>
       <div className="grow mt-3 p-5 border border-solid rounded-lg m-10  w-2/4 h-auto">
         <div>
@@ -30,43 +56,42 @@ export function AddUserlist() {
 <input type="text" name="name"  className="h-8 m-2 
           bg-white border border-slate-300 rounded-md text-sx shadow-sm placeholder-slate-400
             focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-hover:border-black" onChange={(event)=>setName(event.target.value)} required/>
+hover:border-black"  onChange={inputHandler} value={user.name} required/>
           </label>
           <label className="text-xs text-slate-700">
             Email:
             <input type="text" name="email"   className="h-8 m-2 
           bg-white border border-slate-300 rounded-md text-sx shadow-sm placeholder-slate-400
             focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-hover:border-black" onChange={(event)=>setEmail(event.target.value)} required/>
+hover:border-black" onChange={inputHandler} value={user.email} required/>
           </label>
           <label className="text-xs text-slate-700">
             University:
-            <input type="text" name="University" value="Anna University"  className="h-8 m-2  p-2 text-gray-400
+            <input type="text" name="University" className="h-8 m-2  p-2 text-gray-400
           bg-white border border-slate-300 rounded-md text-sx shadow-sm placeholder-slate-400
             focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-" disabled onChange={(event)=>setUniversity(event.target.value)} />
+"onChange={inputHandler} value={user.university}/>
           </label>
           <label className="text-xs text-slate-700">
             Institute:
-            <input type="text" name="Institute" value="Mailam" className="h-8 m-2 p-2 text-gray-400
+            <input type="text" name="Institute"  className="h-8 m-2 p-2 text-gray-400
           bg-white border border-slate-300 rounded-md text-sx shadow-sm 
-            focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 " onChange={(event)=>setInstitute(event.target.value)} disabled/>
+            focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 " onChange={inputHandler} value={user.institute} disabled/>
           </label>
-         
-          <label className="text-xs text-slate-700">
+           <label className="text-xs text-slate-700">
             Department:
-            <input type="text" name="Department"  value="Mechanical_Engineering"className="h-8 m-2 p-2 text-gray-400
+            <input type="text" name="Department" className="h-8 m-2 p-2 text-gray-400
           bg-white border border-slate-300 rounded-md text-sx shadow-sm 
             focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-" disabled onChange={(event)=>setDepartment(event.target.value)}/>
+" onChange={inputHandler} value={user.department} disabled />
           </label>
           <label className="text-xs text-slate-700">
             Role:
        <select  className="h-8 m-2 
           text-black bg-gray-100 border border-slate-300 rounded-md text-sx placeholder-slate-400
             focus:outline-none 
-  hover:bg-gray-100 hover:shadow-lg hover:shadow-white focus:border-sky-500 "  required onChange={(event)=>setRole(event.target.value)}>
-  <option value="" selected disabled hidden></option>
+  hover:bg-gray-100 hover:shadow-lg hover:shadow-white focus:border-sky-500 "  required >
+  <option selected  hidden></option>
 <option >Teacher</option>
 <option >Student</option>
 </select>
@@ -75,27 +100,13 @@ hover:border-black" onChange={(event)=>setEmail(event.target.value)} required/>
             <select className="h-8 m-2 
           text-black bg-gray-100 border border-slate-300 rounded-md text-sx placeholder-slate-400
             focus:outline-none 
-  hover:shadow-lg hover:shadow-white focus:border-sky-500 " required onChange={(event)=>setLab(event.target.value)}>
+  hover:shadow-lg hover:shadow-white focus:border-sky-500 ">
   
                {Labdata.map(lb => <option key={lb}>{lb}</option>)}
       </select>
       </lable>
-      <button className="text-sm p-1 w-24  m-4 border border-amber-400 bg-amber-400 rounded text-black  hover:shadow-lg shadow-gray-400"
-             onClick={
-()=>{
-    const newdata={
-             name:name,
-        email:email,
-        university:university,
-institute:institute,
-department:department,
-lab:lab,
-role:role,
- };
- setData([...data,newdata]);
- navigate("/SettingsNav/Manageuser");
-}
-          }>
+      <button type="button" className="text-sm p-1 w-24  m-4 border border-amber-400 bg-amber-400 rounded text-black  hover:shadow-lg shadow-gray-400"
+             onClick={addUser}>
             Create User
           </button>   </div>
                   </form>

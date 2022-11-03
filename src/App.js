@@ -1,4 +1,6 @@
-//import Header from "./Components/Header";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import userReducer from "./Components/store/reducer/user";
 import { Route, Routes, useParams } from "react-router-dom";
 import { Activity } from "./Components/Settings/Activity/Activity";
 import { FeedBack } from "./Components/Support/Feedback/FeedBack";
@@ -11,15 +13,13 @@ import Header from "./Components/Header/Header";
 import { SideNavbar } from "./Components/Sidebar/SideNavbar";
 import { AddUserlist } from "./Components/Settings/Manageuser/AddUserlist";
 import Mypage from "./Components/Mypage/Mypage";
-import { createContext,useState } from "react";
-import { datauser } from "./Components/Settings/Manageuser/datauser";
-export const AppContext=createContext(null);
+
 function App() {
-  const [data,setData]=useState(datauser);
- 
+  const store=createStore(userReducer)
   return (
     <div className="App">
-      <AppContext.Provider value={{data,setData}}>
+      <Provider store={store}>
+    
     <Routes>
     <Route path='/Header' element={<Header/>} />
     <Route path='/SideNavbar' element={<SideNavbar/>} />    
@@ -33,10 +33,10 @@ function App() {
 <Route path='/SettingsNav/Manageuser/adduser' element={<AddUserlist/>} />
 <Route path='/Mypage' element={<Mypage/>} />
    </Routes>  
-   </AppContext.Provider>    </div>
+   </Provider>
+       </div>
   );
 }
-
 export default App;
 
 
